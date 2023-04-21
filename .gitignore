@@ -137,4 +137,7 @@ model/yolov4-custom-416
 .vscode
 
 Overlay.avi
-.DS_Store
+**/.DS_Store
+
+ptt2*/
+runs/

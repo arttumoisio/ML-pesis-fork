@@ -288,7 +288,6 @@ if __name__ == '__main__':
         if(display):
           fn = os.path.join('mot_benchmark', phase, seq, 'img1', '%06d.jpg'%(frame))
           im =io.imread(fn)
-          ax1.imshow(im)
           plt.title(seq + ' Tracked Targets')
 
         start_time = time.time()
