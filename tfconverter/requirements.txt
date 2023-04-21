@@ -1,0 +1,12 @@
+# useless
+ultralytics
+roboflow
+
+# exporter 
+onnx
+onnx2tf
+sng4onnx
+onnxsim
+tflite_support
+onnxruntime
+# onnx_graphsurgeon>=0.3.26
