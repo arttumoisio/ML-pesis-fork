@@ -138,7 +138,10 @@ model/yolov4-custom-416
 
 Overlay.avi
 **/.DS_Store
+.DS_Store
 
 ptt2*/
 runs/
 model/
+images/
+videos/
