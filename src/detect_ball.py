@@ -8,8 +8,7 @@ def detect(frame, detected_balls, num):
     res = model(frame, conf=score_threshold, iou=iou_threshold, verbose=False)[0]
 
     detections = []
-    for i in range(len(res.boxes)):
-        box = res.boxes[i]
+    for box in res.boxes:  # Indexing boxes object gives boxes object
         xywh = box.xywh[0]
         xyxy = box.xyxy[0]
         score = box.conf[0].item()
