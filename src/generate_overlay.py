@@ -1,13 +1,19 @@
 import cv2
 import numpy as np
 from image_registration import cross_correlation_shifts
-from src.utils import draw_ball_curve
+from src.draw_ball import draw_ball_curve
+from src.config import fps_percentage, base_frame_weight
 
 
 def generate_overlay(video_frames, width, height, fps, outputPath):
     print("Saving overlay result to", outputPath)
-    codec = cv2.VideoWriter_fourcc(*"XVID")
-    out = cv2.VideoWriter(outputPath, codec, fps / 2, (width, height))
+
+    out = cv2.VideoWriter(
+        outputPath,
+        cv2.VideoWriter_fourcc(*"mp4v"),
+        fps * fps_percentage,
+        (width, height),
+    )
 
     frame_lists = sorted(video_frames, key=len, reverse=True)
     balls_in_curves = [[] for i in range(len(frame_lists))]
@@ -39,16 +45,21 @@ def generate_overlay(video_frames, width, height, fps, outputPath):
                         overlay_frame.ball[0],
                         overlay_frame.ball[1],
                         overlay_frame.ball_color,
+                        overlay_frame.laatu,
                     ]
                 )
 
         if base_frame.ball_in_frame:
             balls_in_curves[0].append(
-                [base_frame.ball[0], base_frame.ball[1], base_frame.ball_color]
+                [
+                    base_frame.ball[0],
+                    base_frame.ball[1],
+                    base_frame.ball_color,
+                    base_frame.laatu,
+                ]
             )
 
         # Emphasize base frame
-        base_frame_weight = 0.55
         background_frame = cv2.addWeighted(
             base_frame.frame,
             base_frame_weight,
@@ -61,8 +72,7 @@ def generate_overlay(video_frames, width, height, fps, outputPath):
         for trajectory in balls_in_curves:
             background_frame = draw_ball_curve(background_frame, trajectory)
 
-        result_frame = cv2.cvtColor(background_frame, cv2.COLOR_RGB2BGR)
-        out.write(result_frame)
+        out.write(background_frame)
         if cv2.waitKey(60) & 0xFF == ord("q"):
             break
 

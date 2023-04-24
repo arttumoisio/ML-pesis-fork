@@ -1,3 +1,6 @@
+# cli:
+# onnx2tf -i runs/detect/train2/weights/best.onnx -o runs/detect/train2/weights/best_saved_model -nuo --non_verbose --output_signaturedefs
+
 from ultralytics import YOLO
 
 # Load a model
