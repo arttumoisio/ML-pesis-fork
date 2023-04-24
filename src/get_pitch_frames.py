@@ -6,13 +6,17 @@ from src.Laatu import Laatu
 from src.utils import distance, fill_lost_tracking, get_laatu
 from src.SORT_tracker.sort import Sort
 from src.colors.colors import track_colors
-from src.detect_ball import detect
+from src.detect_ball import get_detections_in_format
+from src.model import model
 from src.config import (
     max_age,
     tracker_min_hits,
     tracker_iou_threshold,
     before_frames,
     after_frames,
+    score_threshold,
+    iou_threshold,
+    PADDING,
 )
 
 
@@ -31,29 +35,28 @@ def get_pitch_frames(video_path):
     detected_balls = []
     tracked_balls = []
     frames = []
-    frame_id = 0
+
+    # Detect the baseball in the video
+    results = model(  # .track(
+        source=video_path,
+        conf=score_threshold,
+        iou=iou_threshold,
+        # tracker="src/SORT_tracker/bot_custom_sort.yaml",
+        # verbose=False,
+        stream=True,
+    )
 
     # Create Object Tracker
     tracker = Sort(
         max_age=max_age, min_hits=tracker_min_hits, iou_threshold=tracker_iou_threshold
     )
+    tracks = []
+    for frame_id, res in enumerate(results):
+        frame = res.orig_img
+        frames.append(FrameInfo(frame, False, laatu=laatu))
 
-    while True:
-        return_value, frame = vid.read()
-        if return_value:
-            # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            frames.append(FrameInfo(frame, False, laatu=laatu))
-        else:
-            print("Processing complete")
-            break
-
-        # Detect the baseball in the frame
-        detections = detect(frame, detected_balls, frame_id)
         # Feed in detections to obtain SORT tracking
-        if len(detections) > 0:
-            trackings = tracker.update(np.array(detections))
-        else:
-            trackings = tracker.update()
+        trackings = tracker.update(get_detections_in_format(res.boxes, detected_balls))
 
         # Add the valid trackings to balls_list
         for t in trackings:
@@ -81,11 +84,7 @@ def get_pitch_frames(video_path):
             pitch_frames.append(FrameInfo(frame, True, last_ball, color, laatu=laatu))
             last_tracked_frame = frame_id
 
-        # result = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-        # if cv2.waitKey(50) & 0xFF == ord("q"):
-        #     break
-
-        frame_id += 1
+    print("Processing complete")
 
     # Use Polyfit to approximate the untracked balls
     fill_lost_tracking(pitch_frames)

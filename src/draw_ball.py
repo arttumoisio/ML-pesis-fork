@@ -35,9 +35,9 @@ def draw_ball_curve(frame, trajectory):
         last_ball = tuple(last_frame[:2])
 
         highest_ball = tuple(highest[:2])
-        cv2.circle(frame, highest_ball, ball_size, ball_color, -1)
-        # cv2.circle(frame, last_ball, ball_size, (195, 195, 195), -1)
-        # cv2.circle(frame, last_ball, ball_size, (0, 0, 0), 1) # Outline
+        cv2.circle(frame, highest_ball, ball_size, ball_color, -1, lineType=cv2.LINE_AA)
+        # cv2.circle(frame, last_ball, ball_size, (195, 195, 195), -1, lineType=cv2.LINE_AA)
+        # cv2.circle(frame, last_ball, ball_size, (0, 0, 0), 1, lineType=cv2.LINE_AA) # Outline
 
     return frame
 
