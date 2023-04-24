@@ -27,4 +27,5 @@ model.train(
     # device="mps",
     save_period=4,
     plots=True,
+    shear=2,
 )  # train the model

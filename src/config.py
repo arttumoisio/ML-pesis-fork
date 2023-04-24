@@ -23,7 +23,8 @@ outputPath = (
 )
 
 # Basic conf
-DEFAULT_VIDEOS_FOLDER = "./videos/lot"
+# DEFAULT_VIDEOS_FOLDER = "./videos/lot"
+DEFAULT_VIDEOS_FOLDER = "./videos/s"
 
 # Overlay config
 fps_percentage = 0.25  # 1 = full fps, 0.5 = half

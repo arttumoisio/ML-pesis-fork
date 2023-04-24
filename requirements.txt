@@ -1,6 +1,6 @@
-astropy==4.1
-filterpy==1.4.5
-image-registration==0.2.4
-opencv-python==4.1.1.26
-pytest==6.1.2
-tensorflow==2.3.0
+astropy
+pytest
+filterpy
+image-registration
+numpy
+scikit-image
