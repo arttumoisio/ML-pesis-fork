@@ -14,7 +14,9 @@ model = YOLO(
     # "yolov8/yolov8n.pt",
     # "yolov8/yolov8s.pt",
     # "yolov8/yolov8m.pt",
-    "runs/detect/train2/weights/epoch32.pt",
+    # "yolov8/yolov8l.pt",
+    "yolov8/yolov8x.pt",
+    # "runs/detect/train2/weights/epoch32.pt",
     task="detect",
 )  # load a pretrained model (recommended for training)
 
