@@ -142,3 +142,6 @@ runs/
 model/
 yolov8/
 .vs-code/
+predictions
+
+yolov8*.pt
