@@ -17,6 +17,7 @@ from src.config import (
     score_threshold,
     iou_threshold,
     PADDING,
+    distance_threshold
 )
 
 
@@ -50,7 +51,7 @@ def get_pitch_frames(video_path):
     tracker = Sort(
         max_age=max_age, min_hits=tracker_min_hits, iou_threshold=tracker_iou_threshold
     )
-    tracks = []
+
     for frame_id, res in enumerate(results):
         frame = res.orig_img
         frames.append(FrameInfo(frame, False, laatu=laatu))
@@ -95,7 +96,7 @@ def get_pitch_frames(video_path):
 
 
 def add_balls_before_SORT(frames, detected, tracked, laatu: Laatu):
-    distance_threshold = 100
+    
     first_ball = tracked[0]
     color = first_ball[2]
     balls_to_add = []
@@ -112,7 +113,7 @@ def add_balls_before_SORT(frames, detected, tracked, laatu: Laatu):
 
     for point in balls_to_add_temp:
         del point[2]
-    balls_to_add_temp = np.array(balls_to_add_temp, dtype="int32")
+    balls_to_add_temp = balls_to_add_temp
 
     for idx, frame in enumerate(modify_frames):
         frames[-((tracker_min_hits + 1) - idx)] = FrameInfo(

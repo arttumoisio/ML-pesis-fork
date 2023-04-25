@@ -1,18 +1,24 @@
 from datetime import datetime
 
+# Basic conf
+# DEFAULT_VIDEOS_FOLDER = "./videos/lot"
+DEFAULT_VIDEOS_FOLDER = "./videos/test2"
+
 modelPath = (
-    # "runs/detect/train/weights/best.pt"
-    "runs/detect/train2/weights/epoch24.pt"
+    "runs/detect/train9/weights/best.pt"
+    # "runs/detect/train/weights/epoch24.pt"
 )
 # Detect config
-PADDING = 150  # maybe should be % of video height 10 = 108 with full hd 1920x1080
+PADDING = 100  # maybe should be % of video height 10 = 108 with full hd 1920x1080
 iou_threshold = 0.2
-score_threshold = 0.4
+score_threshold = 0.5
 
 # SORT config
 tracker_min_hits = 4
 tracker_iou_threshold = 0.2
 max_age = 14
+
+distance_threshold = 100
 
 pathStart = "Overlay"
 f = f"/{pathStart}_{datetime.today().strftime('%H%M')}_"
@@ -22,9 +28,6 @@ outputPath = (
     f"{f}{PADDING}_{iou_threshold}_{score_threshold}_{tracker_min_hits}_{tracker_iou_threshold}_{max_age}{e}"
 )
 
-# Basic conf
-# DEFAULT_VIDEOS_FOLDER = "./videos/lot"
-DEFAULT_VIDEOS_FOLDER = "./videos/s"
 
 # Overlay config
 fps_percentage = 0.25  # 1 = full fps, 0.5 = half

@@ -2,5 +2,5 @@ astropy
 pytest
 filterpy
 image-registration
-numpy
+numpy==1.20.0
 scikit-image

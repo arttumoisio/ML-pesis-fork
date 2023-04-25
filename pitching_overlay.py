@@ -5,6 +5,7 @@ from optparse import OptionParser
 from src.get_pitch_frames import get_pitch_frames
 from src.generate_overlay import generate_overlay
 from src.config import DEFAULT_VIDEOS_FOLDER, outputPath, pathStart
+from src.utils import NoFramesException
 
 # Ignore warnings
 if not sys.warnoptions:
@@ -35,12 +36,10 @@ if __name__ == "__main__":
         try:
             ball_frames, width, height, fps = get_pitch_frames(video_path)
             pitch_frames.append(ball_frames)
-        except Exception as e:
+        except NoFramesException as e :
             print(
                 f"Error: Sorry we could not get enough baseball detection from the video, video {path} will not be overlayed"
-            )
-            print("ERR: ", e)
-            # raise e
+            )# raise e
 
     print("Pitch frames len: ", len(pitch_frames))
     if len(pitch_frames):

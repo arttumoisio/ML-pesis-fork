@@ -17,6 +17,7 @@ def draw_ball_curve(frame, trajectory):
             if point[1] < highest[1]:  # if higher, replace
                 highest = trajectory[i]
             del point[2:]
+        ball_points = [[coord if isinstance(coord, int) else coord.cpu().item() for coord in ball] for ball in ball_points]
         ball_points = np.array(ball_points, dtype="int32")
         # cv2.polylines(
         #     temp_frame,
@@ -32,9 +33,10 @@ def draw_ball_curve(frame, trajectory):
 
         last_frame = trajectory[-1]
         ball_color = get_ball_color(last_frame[3])
-        last_ball = tuple(last_frame[:2])
+        last_ball = (last_frame[0] if isinstance(last_frame[0], int) else int(last_frame[0].item()),last_frame[1] if isinstance(last_frame[1], int) else int(last_frame[1].item()))
 
-        highest_ball = tuple(highest[:2])
+        highest_ball = (highest[0] if isinstance(highest[0], int) else int(last_frame[0].item()),highest[1] if isinstance(highest[1], int) else int(highest[1].item()))
+
         cv2.circle(frame, highest_ball, ball_size, ball_color, -1, lineType=cv2.LINE_AA)
         # cv2.circle(frame, last_ball, ball_size, (195, 195, 195), -1, lineType=cv2.LINE_AA)
         # cv2.circle(frame, last_ball, ball_size, (0, 0, 0), 1, lineType=cv2.LINE_AA) # Outline

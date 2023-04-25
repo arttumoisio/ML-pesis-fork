@@ -146,7 +146,7 @@ def associate_detections_to_trackers(detections,trackers,iou_threshold = 0.3):
   iou_matrix = iou_batch(detections, trackers)
 
   if min(iou_matrix.shape) > 0:
-    a = (iou_matrix > iou_threshold).astype(np.int32)
+    a = (iou_matrix > iou_threshold).astype(int)
     if a.sum(1).max() == 1 and a.sum(0).max() == 1:
         matched_indices = np.stack(np.where(a), axis=1)
     else:
@@ -298,7 +298,7 @@ if __name__ == '__main__':
         for d in trackers:
           print('%d,%d,%.2f,%.2f,%.2f,%.2f,1,-1,-1,-1'%(frame,d[4],d[0],d[1],d[2]-d[0],d[3]-d[1]),file=out_file)
           if(display):
-            d = d.astype(np.int32)
+            d = d.astype(int)
             ax1.add_patch(patches.Rectangle((d[0],d[1]),d[2]-d[0],d[3]-d[1],fill=False,lw=3,ec=colours[d[4]%32,:]))
 
         if(display):

@@ -18,10 +18,10 @@ def get_detections_in_format(boxes, detected_balls):
         detections.append(
             np.array(
                 [
-                    xyxy[0] - PADDING,
-                    xyxy[1] - PADDING,
-                    xyxy[2] + PADDING,
-                    xyxy[3] + PADDING,
+                    xyxy[0].cpu() - PADDING,
+                    xyxy[1].cpu() - PADDING,
+                    xyxy[2].cpu() + PADDING,
+                    xyxy[3].cpu() + PADDING,
                     score,
                 ]
             )
