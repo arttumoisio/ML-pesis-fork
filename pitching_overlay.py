@@ -22,25 +22,24 @@ if __name__ == "__main__":
     )
     (options, args) = optparser.parse_args()
 
-    rootDir = options.rootDir
     # Store the pitch frames and ball location of each video
     pitch_frames = []
 
     # Iterate all videos in the folder
-    for idx, path in enumerate(os.listdir(rootDir)):
+    for idx, path in enumerate(os.listdir(options.rootDir)):
         if not path.endswith(".mp4") or path.startswith(pathStart):
             continue
 
         print(f"Processing Video {idx + 1}")
-        video_path = rootDir + "/" + path
+        video_path = options.rootDir + "/" + path
         try:
             ball_frames, width, height, fps = get_pitch_frames(video_path)
             pitch_frames.append(ball_frames)
-        except NoFramesException as e :
+        except NoFramesException as e:
             print(
                 f"Error: Sorry we could not get enough baseball detection from the video, video {path} will not be overlayed"
-            )# raise e
+            )  # raise e
 
     print("Pitch frames len: ", len(pitch_frames))
     if len(pitch_frames):
-        generate_overlay(pitch_frames, width, height, fps, rootDir + outputPath)
+        generate_overlay(pitch_frames, width, height, fps, outputPath)
