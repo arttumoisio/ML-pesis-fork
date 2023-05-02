@@ -27,8 +27,8 @@ if __name__ == "__main__":
         epochs=300,
         imgsz=640,
         patience=300,
-        # batch=-1, # auto batch
-        batch=32,
+        batch=-1, # auto batch
+        # batch=32,
         device=0,  # 0 = cuda, null = cpu
         save_period=100,
     )  # train the model
