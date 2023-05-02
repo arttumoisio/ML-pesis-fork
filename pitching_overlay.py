@@ -26,7 +26,7 @@ if __name__ == "__main__":
     pitch_frames = []
 
     # Iterate all videos in the folder
-    for idx, path in enumerate(os.listdir(options.rootDir)):
+    for idx, path in enumerate(sorted(os.listdir(options.rootDir))):
         if not path.endswith(".mp4"):
             continue
 
