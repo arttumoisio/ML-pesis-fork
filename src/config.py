@@ -23,8 +23,7 @@ max_age = 14
 distance_threshold = 100
 
 outputFolder = "./predictions"
-pathStart = "Overlay"
-f = f"{VIDEO_FOLDER}_{pathStart}_{datetime.today().strftime('%H%M')}_"
+f = f"{VIDEO_FOLDER}_{datetime.today().strftime('%H%M')}_"
 e = f".mp4"
 outputPath = outputFolder + (
     ## spacing

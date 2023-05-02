@@ -17,7 +17,7 @@ from src.config import (
     score_threshold,
     iou_threshold,
     PADDING,
-    distance_threshold
+    distance_threshold,
 )
 
 
@@ -38,13 +38,14 @@ def get_pitch_frames(video_path):
     frames = []
 
     # Detect the baseball in the video
-    results = model(  # .track(
+    # results = model.track(
+    # tracker="src/SORT_tracker/bot_custom_sort.yaml",
+    results = model(
         source=video_path,
         conf=score_threshold,
         iou=iou_threshold,
-        # tracker="src/SORT_tracker/bot_custom_sort.yaml",
-        # verbose=False,
         stream=True,
+        # verbose=False,
     )
 
     # Create Object Tracker
@@ -96,7 +97,6 @@ def get_pitch_frames(video_path):
 
 
 def add_balls_before_SORT(frames, detected, tracked, laatu: Laatu):
-    
     first_ball = tracked[0]
     color = first_ball[2]
     balls_to_add = []

@@ -4,7 +4,7 @@ import warnings
 from optparse import OptionParser
 from src.get_pitch_frames import get_pitch_frames
 from src.generate_overlay import generate_overlay
-from src.config import DEFAULT_VIDEOS_FOLDER, outputPath, pathStart
+from src.config import DEFAULT_VIDEOS_FOLDER, outputPath
 from src.utils import NoFramesException
 
 # Ignore warnings
@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     # Iterate all videos in the folder
     for idx, path in enumerate(os.listdir(options.rootDir)):
-        if not path.endswith(".mp4") or path.startswith(pathStart):
+        if not path.endswith(".mp4"):
             continue
 
         print(f"Processing Video {idx + 1}")
