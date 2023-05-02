@@ -1,12 +1,12 @@
 import cv2
 import copy
 import numpy as np
-from src.FrameInfo import FrameInfo
 from src.Laatu import Laatu
-from src.config import ball_size, line_thickness, trajectory_weight
+
 
 class NoFramesException(Exception):
     pass
+
 
 def fill_lost_tracking(frame_list):
     if len(frame_list) < 1:
@@ -17,7 +17,7 @@ def fill_lost_tracking(frame_list):
 
     balls_x = [b if isinstance(b, int) else b.cpu() for b in balls_x]
     balls_y = [b if isinstance(b, int) else b.cpu() for b in balls_y]
-    
+
     # Get the polynomial equation
     curve = np.polyfit(balls_x, balls_y, 2)
     poly = np.poly1d(curve)
