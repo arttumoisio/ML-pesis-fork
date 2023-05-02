@@ -7,7 +7,7 @@ VIDEO_FOLDER = "/test2"
 DEFAULT_VIDEOS_FOLDER = VIDEOS_ROOT + VIDEO_FOLDER
 
 modelPath = (
-    "runs/detect/train2/weights/best.pt"
+    "best.pt"
     # "runs/detect/train/weights/epoch24.pt"
 )
 # Detect config
@@ -32,10 +32,10 @@ outputPath = outputFolder + (
 
 # Overlay config
 fps_percentage = 0.25  # 1 = full fps, 0.5 = half
-base_frame_weight = 0.45  # orig 0.55
+base_frame_weight = 0.3  # orig 0.55
 
-ball_size = 4  # TODO count from bbox heights
-line_thickness = round(1.2 * ball_size)  # TODO count from ball_size
+ball_size = 3  # TODO count from bbox heights
+line_thickness = round(1.2 * ball_size)
 trajectory_weight = 0.6  # orig 0.7
 
 before_frames = 30
