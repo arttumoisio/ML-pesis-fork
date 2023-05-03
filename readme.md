@@ -32,6 +32,9 @@ ffmpeg -i 2_jakso_clip.mp4 -filter:v "crop=480:720:400:0" 2_jakso_crop.mp4
 ffmpeg -i 1_jakso_clip.mp4 -filter:v "crop=720:720:280:0" 1_jakso_crop.mp4
 ffmpeg -i 2_jakso_clip.mp4 -filter:v "crop=720:720:280:0" 2_jakso_crop.mp4
 
+ffmpeg -i 1_jakso_clip.mp4 -filter:v "crop=1080:1080:420:0" 1_jakso_crop.mp4
+ffmpeg -i 2_jakso_clip.mp4 -filter:v "crop=1080:1080:420:0" 2_jakso_crop.mp4
+
 - Ota clipit losslesscutilla.
 - Uploadaa clipit -> roboflow
 - Annotointi
