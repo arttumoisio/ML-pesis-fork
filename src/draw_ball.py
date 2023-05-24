@@ -46,7 +46,7 @@ def draw_ball_curve(frame, trajectory):
         )
 
         highest_ball = (
-            highest[0] if isinstance(highest[0], int) else int(last_frame[0].item()),
+            highest[0] if isinstance(highest[0], int) else int(highest[0].item()),
             highest[1] if isinstance(highest[1], int) else int(highest[1].item()),
         )
 

@@ -1,5 +1,3 @@
-import cv2
-import copy
 import numpy as np
 from src.Laatu import Laatu
 
@@ -55,6 +53,7 @@ def fill_lost_tracking(frame_list):
 
             for idx, frame in enumerate(lost_idx):
                 x = prev_frame.ball[0] + (speed * (idx + 1))
+                x = x if isinstance(x, int) else x.cpu()
                 y = int(poly(x))
                 frame.ball_in_frame = True
                 frame.ball = (x, y)

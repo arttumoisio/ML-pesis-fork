@@ -2,8 +2,8 @@ from datetime import datetime
 
 # Basic conf
 # DEFAULT_VIDEOS_FOLDER = "./videos/lot"
-VIDEOS_ROOT = "./videos"
-VIDEO_FOLDER = "/test2"
+VIDEOS_ROOT = "./videos/kama"
+VIDEO_FOLDER = "/T"
 DEFAULT_VIDEOS_FOLDER = VIDEOS_ROOT + VIDEO_FOLDER
 
 modelPath = (
